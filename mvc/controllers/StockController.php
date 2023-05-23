@@ -1,4 +1,5 @@
 <?php
+require_once "../models/Model.php";
 require_once "../models/CategorieModel.php";
 require_once "../models/ArticleModel.php";
 require_once "../models/ArticleConfectionModel.php";
@@ -6,16 +7,17 @@ require_once "../models/ArticleVenteModel.php";
 //Service 
 class StockController{
     public  function listerCategorie(){
+        $catModel =new CategorieModel;
         //Recoit une Request
         //Realise une Fonctionnalite
-        $categories=[];
-        for ($i=1; $i <= 5; $i++) { 
+       
+        /*for ($i=1; $i <= 5; $i++) { 
             $cat =new CategorieModel;
-            $cat->setId($i)
-                -> setLibelle("Categorie".$i);
-            $categories[] = $cat;     
-        }
+            $cat-> setLibelle("Categorie".$i);
+            $cat->insert() ; 
+        }*/
         //Response => html+css
+        $categories= $catModel->findAll();
         require_once "./../views/categorie/liste.html.php";
     }
 

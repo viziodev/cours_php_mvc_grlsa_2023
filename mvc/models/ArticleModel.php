@@ -1,17 +1,17 @@
 <?php 
-abstract class ArticleModel{
+abstract class ArticleModel extends Model{
     protected int $id;
     protected string $libelle;
     protected float $prixAchat;
     protected int $qteStock;
     protected string $type;
-   
+
+
     public function __construct()
     {
-        
+        parent::__construct();
+        $this->tableName="article"; 
     }
-    
-    
     /**
      * Get the value of id
      */ 
@@ -110,5 +110,18 @@ abstract class ArticleModel{
         $this->type = $type;
 
         return $this;
+    }
+
+    
+    public function insert():int{
+        $sql="INSERT INTO $this->tableName (`id`, `libelle`) VALUES (NULL,:libelle)";
+        $stmt= $this->pdo->prepare($sql);
+        $stmt->execute(["libelle"=>$this->libelle]);
+        return $stmt->rowCount();
+    }
+
+    public function update():int{
+        //A Faire
+        return 0;
     }
 }
