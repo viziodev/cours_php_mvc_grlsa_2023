@@ -26,4 +26,11 @@ class ArticleConfectionModel  extends ArticleModel{
 
         return $this;
     }
+
+    //findAll   ==> Model  
+    //findById  ==> Model
+    //remove    ==> Model
+    //insert    ==> ArticleModel
+
+   
 }

@@ -1,5 +1,5 @@
 <?php 
-abstract class ArticleModel extends Model{
+class ArticleModel extends Model{
     protected int $id;
     protected string $libelle;
     protected float $prixAchat;
@@ -113,15 +113,27 @@ abstract class ArticleModel extends Model{
     }
 
     
-    public function insert():int{
-        $sql="INSERT INTO $this->tableName (`id`, `libelle`) VALUES (NULL,:libelle)";
+    public function insert($data):int{
+        $sql="INSERT INTO $this->tableName  VALUES (NULL,:libelle,:prixAchat,:qteStock,:type,:fournisseur, :dateProduction,:categorieId) ";
         $stmt= $this->pdo->prepare($sql);
-        $stmt->execute(["libelle"=>$this->libelle]);
+        $stmt->execute(["libelle"=>$this->libelle,
+                         "prixAchat"=>$this->prixAchat, 
+                         "qteStock"=>$this->qteStock, 
+                         "type"=>$this->type,
+                         "fournisseur"=>$this->type=='ArticleConfection'?$data: null,
+                         "dateProduction"=>$this->type=='ArticleVente'?$data: null,
+                        ]);
         return $stmt->rowCount();
     }
 
     public function update():int{
         //A Faire
         return 0;
+    }
+
+     public function findAll():array{
+        $sql="select * from $this->tableName  where  type  like '$this->type' ";  //Requete Non preparee
+        $stmt= $this->pdo->query($sql);
+        return $stmt->fetchAll(\PDO::FETCH_CLASS,get_called_class()); 
     }
 }

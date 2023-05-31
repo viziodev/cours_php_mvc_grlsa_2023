@@ -28,4 +28,6 @@ class ArticleVenteModel extends ArticleModel{
 
         return $this;
     }
+
+   
 }

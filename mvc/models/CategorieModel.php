@@ -6,8 +6,7 @@ class CategorieModel extends Model{
     public function __construct()
     {
         parent::__construct();
-        $this->tableName="categorie";
-        
+        $this->tableName="categorie"; 
     }
    
     
