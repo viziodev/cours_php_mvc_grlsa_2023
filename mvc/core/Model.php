@@ -32,13 +32,26 @@ class Model {
         return $stmt->fetchAll(\PDO::FETCH_CLASS,get_called_class()); 
     }
 
+    public function query(string $sql,$data=[],$single=false){
+        $stmt= $this->pdo->prepare($sql);
+        $stmt->setFetchMode(\PDO::FETCH_CLASS,get_called_class());
+        $stmt->execute($data);
+        if($single){
+            return $stmt->fetch();  
+        }else{
+            return $stmt->fetchAll(\PDO::FETCH_CLASS,get_called_class());   
+        }
+        
+    }
+
     public function findById(int $id){
         //$sql="select * from categorie where id=$id";//Requete  preparee
-        $sql="select * from $this->tableName where id=:x";
+       /* $sql="select * from $this->tableName where id=:x";
         $stmt= $this->pdo->prepare($sql);
         $stmt->setFetchMode(\PDO::FETCH_CLASS,get_called_class());
         $stmt->execute(["x"=>$id]);
-        return $stmt->fetch();
+        return $stmt->fetch();*/
+        return $this->query("select * from $this->tableName where id=:x",["x"=>$id],true);
     }
 
     public function remove(int $id):int{
@@ -48,4 +61,8 @@ class Model {
         $stmt->execute(["x"=>$id]);
         return $stmt->rowCount();
     }
+
+  /*  public function hydrate(array $data){
+          
+    }*/
 }

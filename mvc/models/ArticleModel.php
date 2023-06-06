@@ -4,13 +4,19 @@ class ArticleModel extends Model{
     protected string $libelle;
     protected float $prixAchat;
     protected int $qteStock;
+    protected int $ordre;
     protected string $type;
+    //ManyToOne
+    protected int $categorieId;
+
+    private CategorieModel $catModel;
 
 
     public function __construct()
     {
         parent::__construct();
         $this->tableName="article"; 
+        $this->catModel =new CategorieModel; 
     }
     /**
      * Get the value of id
@@ -114,12 +120,14 @@ class ArticleModel extends Model{
 
     
     public function insert($data):int{
-        $sql="INSERT INTO $this->tableName  VALUES (NULL,:libelle,:prixAchat,:qteStock,:type,:fournisseur, :dateProduction,:categorieId) ";
+        $sql="INSERT INTO $this->tableName  VALUES (NULL,:libelle,:prixAchat,:qteStock,:type,:fournisseur, :dateProduction,:categorieId,:ordre) ";
         $stmt= $this->pdo->prepare($sql);
         $stmt->execute(["libelle"=>$this->libelle,
                          "prixAchat"=>$this->prixAchat, 
                          "qteStock"=>$this->qteStock, 
                          "type"=>$this->type,
+                         "categorieId"=>$this->categorieId,
+                         "ordre"=>$this->type=='ArticleConfection'?1: 0,
                          "fournisseur"=>$this->type=='ArticleConfection'?$data: null,
                          "dateProduction"=>$this->type=='ArticleVente'?$data: null,
                         ]);
@@ -132,8 +140,35 @@ class ArticleModel extends Model{
     }
 
      public function findAll():array{
-        $sql="select * from $this->tableName  where  type  like '$this->type' ";  //Requete Non preparee
+      /*  $sql="select * from $this->tableName  where  type  like '$this->type' ";  //Requete Non preparee
         $stmt= $this->pdo->query($sql);
-        return $stmt->fetchAll(\PDO::FETCH_CLASS,get_called_class()); 
+        return $stmt->fetchAll(\PDO::FETCH_CLASS,get_called_class()); */
+        return $this->query("select * from $this->tableName  where  type  like :type",["type"=>$this->type]
+    ); 
+        
+    }
+
+    public function getTypesArticle():array{
+        return $this->query("SELECT Distinct `type`,ordre FROM `Article` ORDER by ordre desc"); 
+    }
+
+    /**
+     * Get the value of categorieId
+     */ 
+    public function getCategorie()
+    {
+        return $this->catModel->findById($this->categorieId);
+    }
+
+    /**
+     * Set the value of categorieId
+     *
+     * @return  self
+     */ 
+    public function setCategorieId($categorieId)
+    {
+        $this->categorieId = $categorieId;
+
+        return $this;
     }
 }

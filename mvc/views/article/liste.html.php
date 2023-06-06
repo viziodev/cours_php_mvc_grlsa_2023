@@ -1,31 +1,22 @@
-<!doctype html>
-<html lang="en">
+<div class="container mt-3">
+    <div class="card">
 
-<head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <div class="card-body">
+            <div class="row float-end ">
+                <div class="col-4  ">
+                    <a name="" id="" class="btn btn-info  text-white  " href="<?=BASE_URL?>?page=show-form-article"
+                        role="button">Nouveau</a>
+                </div>
 
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="http://localhost:8000/css/style.css">
-</head>
-
-<body>
-    <header>
-        <?php require_once "./../views/inc/nav.html.php"; ?>
-    </header>
-    <main>
-        <div class="container mt-3">
+            </div>
+            <h4 class="card-title">Liste des Article </h4>
             <div class="table table-bordered table-light mt-3">
                 <table class="table ">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Libelle</th>
+                            <th scope="col">Categorie</th>
                             <th scope="col">Type</th>
                             <th scope="col">Qte</th>
                             <th scope="col">Prix Achat</th>
@@ -37,8 +28,9 @@
                         <?php foreach($articles as $cat): ?>
 
                         <tr class="">
-                            <td scope="row"> <?=$cat->getId()?> </td>
+                            <td scope=" row"> <?=$cat->getId()?> </td>
                             <td><?=$cat->getLibelle()?></td>
+                            <td><?=$cat->getCategorie()->getLibelle()?></td>
                             <td><?=$cat->getType()?></td>
                             <td><?=$cat->getQteStock()?></td>
                             <td><?=$cat->getPrixAchat()?></td>
@@ -52,18 +44,6 @@
                 </table>
             </div>
         </div>
-    </main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
+</div>

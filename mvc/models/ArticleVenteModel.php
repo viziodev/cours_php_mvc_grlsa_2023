@@ -14,7 +14,7 @@ class ArticleVenteModel extends ArticleModel{
      */ 
     public function getDateProduction()
     {
-        return $this->dateProduction;
+        return dateToFr($this->dateProduction)  ;
     }
 
     /**

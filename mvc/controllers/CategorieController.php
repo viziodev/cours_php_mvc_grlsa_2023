@@ -1,10 +1,7 @@
 <?php
-require_once "../core/Session.php";
-require_once "../core/Model.php";
 require_once "../models/CategorieModel.php";
-require_once "../core/Validator.php";
 //Service 
-class CategorieController{
+class CategorieController extends Controller{
     private CategorieModel $catModel;
     public function __construct()
     {
@@ -14,7 +11,10 @@ class CategorieController{
     public  function lister(){
        
         $categories=  $this->catModel->findAll();
-        require_once "./../views/categorie/liste.html.php";
+        $this->render("categorie/liste.html.php",[
+            "categories"=>$categories
+        ]);
+      
     }
 
     public  function add(){
@@ -51,7 +51,8 @@ class CategorieController{
   
        Session::set("errors",Validator::getErrors());
         //Redirection
-       header("location:".BASE_URL."/?page=categorie");//GET
+      // header("location:".BASE_URL."/?page=categorie");//GET
+      $this->redirect("categorie");
 
 }
 
