@@ -1,5 +1,4 @@
 <?php
-dump(Session::get("userconnect"));
  if(!Role::isConnect()) redirect("show-login-form");
 ?>
 <!doctype html>

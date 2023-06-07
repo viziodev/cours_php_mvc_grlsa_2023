@@ -21,10 +21,9 @@ class AuthController extends Controller{
     
 
     public function login()
-    {
-        
+    { 
        Validator::isEmail($_POST['login'],"login") ;
-       Validator::isVide($_POST['password'],"password") ;
+       Validator::isVide($_POST['password'],"password","Le Mot de Passe est obligatoire") ;
 
        if( Validator::valide()){
         
@@ -38,15 +37,13 @@ class AuthController extends Controller{
        }
          Session::set("errors",Validator::getErrors()); 
          Session::set("data",$_POST); 
-       $this->redirect("show-login-form");
+         $this->redirect("show-login-form");
     }
 
     
     
     public function logout() {
-        Session::set("userconnect",[]);
         Session::unset("userconnect");
-        session_unset();
         Session::destroySession();
         $this->redirect("show-login-form");
     }

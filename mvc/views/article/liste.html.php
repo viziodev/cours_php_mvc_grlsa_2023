@@ -1,3 +1,6 @@
+<?php
+ if(!Role::hasRole("Admin") ) redirect("categorie");
+?>
 <div class="container mt-3">
     <div class="card">
 

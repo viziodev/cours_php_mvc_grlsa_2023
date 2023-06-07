@@ -1,11 +1,14 @@
 <?php
- if(Session::isset("errors")) {
-      $errors=Session::get("errors");
-      //Recuperer les donnees du Formulaire
-      $data=Session::get("data");
-      Session::unset("errors");  
-      Session::unset("data"); 
- }
+
+if(!Role::hasRole("Admin") ) redirect("categorie");
+
+if(Session::isset("errors")) {
+$errors=Session::get("errors");
+//Recuperer les donnees du Formulaire
+$data=Session::get("data");
+Session::unset("errors");
+Session::unset("data");
+}
 ?><div class="card mt-5" style="width:40rem; ">
     <div class="card-body">
         <h5 class="card-title">Enregistrement un Article</h5>

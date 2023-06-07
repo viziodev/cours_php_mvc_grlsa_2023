@@ -32,7 +32,7 @@ $ctrlAuth=new AuthController;
     elseif ($_REQUEST['page']=='login') {
         $ctrlAuth->login(); 
     }elseif ($_REQUEST['page']=='logout') {
-        $ctrlAuth->login(); 
+           $ctrlAuth->logout(); 
     }
 
     //

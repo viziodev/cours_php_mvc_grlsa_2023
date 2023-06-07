@@ -15,7 +15,6 @@ class ArticleController extends Controller{
         $this->articleModel =new ArticleModel;  
     }
     public  function lister(){
-        dump(Session::get("userconnect")) ; die;
         $articleCModel=new ArticleConfectionModel;
         $articleVModel=new ArticleVenteModel;
         $articles=array_merge($articleCModel->findAll(),$articleVModel->findAll());
