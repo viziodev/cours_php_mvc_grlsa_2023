@@ -8,10 +8,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarID">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/?page=categorie">Categorie</a>
+
+                    <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/?page=categorie">
+                        Categorie</a>
+
+                    <?php if(Role::hasRole("Admin")):?>
                     <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/?page=article">Article</a>
+                    <?php endif?>
+                    <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/?page=logout">Deconnexion</a>
                 </div>
             </div>
-        </div>
     </nav>
 </div>

@@ -5,13 +5,13 @@ class CategorieController extends Controller{
     private CategorieModel $catModel;
     public function __construct()
     {
+        parent::__construct();
         $this->catModel =new CategorieModel; 
-        Session::startSession();
+      
     }
     public  function lister(){
-       
-        $categories=  $this->catModel->findAll();
-        $this->render("categorie/liste.html.php",[
+          $categories=  $this->catModel->findAll();
+          $this->render("categorie/liste.html.php",[
             "categories"=>$categories
         ]);
       
@@ -48,7 +48,6 @@ class CategorieController extends Controller{
      *     ==stocke des valeurs dans le Tableau ==> $_SESSION['key']=valeur
      *     ==detruit le Tableau ==> session_destroy()
      */
-  
        Session::set("errors",Validator::getErrors());
         //Redirection
       // header("location:".BASE_URL."/?page=categorie");//GET

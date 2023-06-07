@@ -4,10 +4,16 @@ class Validator{
   private static array $errors=[];
   
   public  static function isVide($field,$key,$sms="champ obligatoire"){
-    if(empty($field)){
+    if(empty(trim($field))){
         self::$errors[$key]=$sms;   
     }
    
+  }
+
+  public  static function isNumber($field,$key,$sms="le champ doit etre un numerique et positif"){
+    if(!is_numeric($field) || $field<=0 ){
+        self::$errors[$key]=$sms;   
+    }
   }
   public  static function valide():bool{
     return count(self::$errors)==0;

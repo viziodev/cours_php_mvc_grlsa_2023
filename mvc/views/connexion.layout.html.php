@@ -1,7 +1,3 @@
-<?php
-dump(Session::get("userconnect"));
- if(!Role::isConnect()) redirect("show-login-form");
-?>
 <!doctype html>
 <html lang="en">
 
@@ -18,9 +14,7 @@ dump(Session::get("userconnect"));
 </head>
 
 <body>
-    <header>
-        <?php require_once "./../views/inc/nav.html.php"; ?>
-    </header>
+
     <main class="d-flex justify-content-center">
         <?=$contentForView?>
     </main>

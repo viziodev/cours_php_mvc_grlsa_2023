@@ -10,10 +10,12 @@ class ArticleController extends Controller{
     private ArticleModel $articleModel;
     public function __construct()
     {
+        parent::__construct();
         $this->catModel =new CategorieModel;  
         $this->articleModel =new ArticleModel;  
     }
     public  function lister(){
+        dump(Session::get("userconnect")) ; die;
         $articleCModel=new ArticleConfectionModel;
         $articleVModel=new ArticleVenteModel;
         $articles=array_merge($articleCModel->findAll(),$articleVModel->findAll());
@@ -32,6 +34,11 @@ class ArticleController extends Controller{
 
     public  function save(){
           
+           Validator::isVide($_POST['libelle'],"libelle");
+           Validator::isNumber($_POST['qteStock'],"qteStock");
+           Validator::isVide($_POST['categorie'],"categorie");
+
+           if(Validator::valide()){
            $this->articleModel->setLibelle($_POST['libelle']); 
            $this->articleModel->setQteStock($_POST['qteStock']); 
            $this->articleModel->setPrixAchat($_POST['prixAchat']);
@@ -40,14 +47,21 @@ class ArticleController extends Controller{
          // $this->articleModel->hydrate($_POST);
            if($_POST['type']=="ArticleConfection"){
                $data=$_POST['fournisseur'];
-               dump("ok");
+              
            }elseif($_POST['type']=="ArticleVente"){
             
                $data=dateToEn($_POST['dateProduction']);
             
            }
-           $this->articleModel->insert($data);
-
-          $this->redirect("article");
+             $this->articleModel->insert($data);
+       
+              $this->redirect("article");
+        }else{
+            // dump(Validator::getErrors());
+              Session::set("errors",Validator::getErrors()); 
+              Session::set("data",$_POST); 
+             $this->redirect("show-form-article");
+        }
+         
     }
 }

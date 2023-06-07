@@ -6,5 +6,6 @@ require_once "./../helpers/helpers.php";
 
 require_once "../core/Model.php";
 require_once "../core/Session.php";
+require_once "./../core/Role.php";
 require_once "./../core/Controller.php";
 require_once "./../core/Validator.php";

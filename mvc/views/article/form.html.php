@@ -1,19 +1,31 @@
-<div class="card mt-5" style="width:40rem; ">
+<?php
+ if(Session::isset("errors")) {
+      $errors=Session::get("errors");
+      //Recuperer les donnees du Formulaire
+      $data=Session::get("data");
+      Session::unset("errors");  
+      Session::unset("data"); 
+ }
+?><div class="card mt-5" style="width:40rem; ">
     <div class="card-body">
         <h5 class="card-title">Enregistrement un Article</h5>
         <form class="row g-3 needs-validation mt-1" method="Post" action="<?=BASE_URL?>">
             <div class="col-md-10">
                 <label for="validationCustom01" class="form-label">Libelle</label>
-                <input type="text" class="form-control" id="validationCustom01" value="" name="libelle">
-                <div class=" valid-feedback">
-                    Looks good!
+                <input type="text" class="form-control <?= isset($errors['libelle'])? "is-invalid" :"is-valid" ?>"
+                    id="validationCustom01" value="<?php if(isset($data['libelle']))  echo $data['libelle'];  ?> "
+                    name="libelle">
+                <div class=" valid-feedback <?= isset($errors['libelle'])? "invalid-feedback" :"" ?> ">
+                    <?= $errors['libelle']??"" ?>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class=" col-md-5">
                 <label for="validationCustom02" class="form-label">Qte Stock</label>
-                <input type="text" class="form-control" id="validationCustom02" value="" name="qteStock">
-                <div class="valid-feedback">
-                    Looks good!
+                <input type="text" class="form-control  <?= isset($errors['qteStock'])? "is-invalid" :"is-valid" ?> "
+                    id="validationCustom02" value="<?php if(isset($data['qteStock']))  echo $data['qteStock'];  ?>"
+                    name="qteStock">
+                <div class="valid-feedback  <?= isset($errors['qteStock'])? "invalid-feedback" :"" ?> ">
+                    <?= $errors['qteStock']??"" ?>
                 </div>
             </div>
             <div class="col-md-5">
@@ -34,7 +46,7 @@
 
                 </select>
                 <div class="invalid-feedback">
-                    Please select a valid state.
+                    <?= $errors['categorie']??"" ?>
                 </div>
             </div>
             <div class="col-md-5">

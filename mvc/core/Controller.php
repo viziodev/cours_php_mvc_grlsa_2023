@@ -1,6 +1,14 @@
 <?php 
 class Controller{
-    protected string  $layout="base"; 
+    protected string  $layout="base";
+    
+    public function __construct()
+    {
+        Session::startSession();
+    }
+
+    
+  
     public function render($view, array $data=[]){
        extract($data);
         ob_start();
@@ -11,5 +19,6 @@ class Controller{
 
     public function redirect(string $path){
         header("location:".BASE_URL."/?page=$path");//GET
+        exit;
     }
 }
