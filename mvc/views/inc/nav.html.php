@@ -15,8 +15,14 @@
                     <?php if(Role::hasRole("Admin")):?>
                     <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/?page=article">Article</a>
                     <?php endif?>
-                    <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/?page=logout">Deconnexion</a>
+
                 </div>
             </div>
+            <div class="navbar navbar-expand-sm navbar-light bg-info mt-2 float-end">
+                <div class="text-white " style="margin-right: 20px;">
+                    <?=Session::get("userconnect")['nomComplet']." ".Session::get("userconnect")['role']?> </div>
+                <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/?page=logout">Deconnexion</a>
+            </div>
     </nav>
+
 </div>

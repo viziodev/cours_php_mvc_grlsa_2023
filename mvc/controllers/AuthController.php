@@ -28,10 +28,15 @@ class AuthController extends Controller{
        if( Validator::valide()){
         
            $user= $this->userModel->findUserByLoginAndPassword($_POST['login'],$_POST['password']);   
-           if( $user==null){
+           if($user==null){
                Validator::addError("error_connexion","Login ou Mot de Passe incorrect");
            }else{
-                 Session::set("userconnect", toArray($user));
+               //La session ne stocke pas d'objet
+               //La session peut stoker soit des donnees de type elementaire
+               //soit un tableau
+               //Authentification stateFull 
+               //Connexion ==> Authentification + Autorisation 
+                 Session::set("userconnect",toArray($user) );
                  $this->redirect("categorie");
            }
        }

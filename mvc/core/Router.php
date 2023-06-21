@@ -3,11 +3,12 @@
 require_once "./../controllers/CategorieController.php";
 require_once "./../controllers/ArticleController.php";
 require_once "./../controllers/AuthController.php";
+require_once "./../controllers/ApproController.php";
 //Router ==> Choisir le controller et d'executer une Methode du controlleur
 $ctrlCat=new CategorieController;
 $ctrlArt=new ArticleController;
 $ctrlAuth=new AuthController;
-
+$ctrlAppro=new ApproController;
 
 //if(isset($_GET['page']) || isset($_POST['page'])){  ==> $_REQUEST['page']
     //$page = isset($_GET['page'])?$_GET['page']: $_POST['page'];
@@ -33,7 +34,11 @@ $ctrlAuth=new AuthController;
         $ctrlAuth->login(); 
     }elseif ($_REQUEST['page']=='logout') {
            $ctrlAuth->logout(); 
-    }
+    }elseif ($_REQUEST['page']=='save-appro') {
+          $ctrlAppro->save();
+    }elseif ($_REQUEST['page']=='add-detail') {
+        $ctrlAppro->addDetail();
+  }
 
     //
      

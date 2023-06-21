@@ -1,7 +1,5 @@
 <?php
 
-if(!Role::hasRole("Admin") ) redirect("categorie");
-
 if(Session::isset("errors")) {
 $errors=Session::get("errors");
 //Recuperer les donnees du Formulaire
