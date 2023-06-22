@@ -44,6 +44,10 @@ class Model {
         
     }
 
+    public function executeUpdate(){
+        
+    }
+
     public function findById(int $id){
         //$sql="select * from categorie where id=$id";//Requete  preparee
        /* $sql="select * from $this->tableName where id=:x";

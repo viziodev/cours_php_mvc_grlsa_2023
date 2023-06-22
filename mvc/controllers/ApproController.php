@@ -1,19 +1,38 @@
 <?php
+require_once "../models/ArticleModel.php";
 require_once "../models/ArticleConfectionModel.php";
+require_once "../models/DetailApproModel.php";
+require_once "../models/ApprovisionnementModel.php";
 class ApproController extends Controller{
     private ArticleConfectionModel $artConfModel;
+    private ApprovisionnementModel $approModel;
     public function __construct(){
         $this->artConfModel=new ArticleConfectionModel;
+        $this->approModel=new ApprovisionnementModel;
     }
-
+    public  function validerPayement(){
+        $approId=$_GET['id-appro'];
+        $this->approModel->savePayement($approId);
+        $this->redirect("show-appro");
+    }
     //Ajouter un Approvisionnement
       //1-Charger le Formulaire  => GET
       //2-Ajouter apres la soumission du Formulaire  ==> POST
       public  function save(){
          $articles= $this->artConfModel->findAll();
-
          if(isset($_POST['page'])){
             //Ajouter l'appro
+            if(Session::isset("detailsAppro")){
+                $detailsAppro=Session::get("detailsAppro");
+                $total=  Session::get("total");
+                $this->approModel->montant=$total;
+                $this->approModel->detailAppro= $detailsAppro;
+                $this->approModel->insert();
+                $sms="Approvisionnement ajoutee avec succes  ";
+            }else{
+                $sms="Veuillez ajouter au moins un article dans l'appro  ";
+            }
+             Session::set("sms",$sms);
             //Vider Panier
              Session::unset("detailsAppro"); 
              Session::unset("total"); 
@@ -25,10 +44,15 @@ class ApproController extends Controller{
       }
       //Lister + Filtrer Approvisionnement
       public  function index(){
-        
+        $etatPayement=0;
+        if(isset($_POST['page'])){
+            $etatPayement=$_POST['etatPayement'];
+        }
+        $appros=$this->approModel->findApproByPaiement($etatPayement);
+        $this->render("appro/liste.html.php",[
+            'appros'=>  $appros
+        ]) ;
       }
-
-
       public function addDetail(){ 
             //Valider les informations du formulaire 
              $articleSelect= $this->artConfModel->findById($_POST['articleID']);
@@ -49,6 +73,7 @@ class ApproController extends Controller{
                     "qteAppro"=>$_POST['qteAppro'],
                     "prix"=>$articleSelect->getPrixAchat(),
                     "montant"=>$montant,
+                    "qteStock"=>$articleSelect->getQteStock(),
                    ];
                 $detailsAppro[]=$unDetail;
               }else{
@@ -65,7 +90,11 @@ class ApproController extends Controller{
 
       //Lister les details un Approvisionnement
       public  function detailAppro(){
-        
+        $approId=$_POST['id-appro'];
+        $appro= $this->approModel->findById($approId);
+        $this->render("appro/detail.html.php",[
+            'appro'=> $appro
+        ]) ;
       }
 
       private function  getPositionDetail(array $data,int $articleId):int{

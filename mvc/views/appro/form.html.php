@@ -3,10 +3,19 @@
       $errors=Session::get("errors");
       Session::unset("errors");  
  }
+ if(Session::isset("sms")) {
+    $sms=Session::get("sms");
+    Session::unset("sms");  
+}
 ?>
 <div class=" card w-75 mt-3 ">
 
     <div class=" card-body ">
+        <?php if(!empty($sms)):?>
+        <div class="alert alert-info" role="alert">
+            <?=$sms??""?>
+        </div>
+        <?php endif?>
         <form class=" my-3" style="margin-left: 10px;" method="post" action="<?=BASE_URL?>">
             <div class="row w-100 d-flex">
                 <div class="col-6">
@@ -46,6 +55,7 @@
                                 <th scope="col">Prix</th>
                                 <th scope="col">Qte Appro</th>
                                 <th scope="col">Montant</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,6 +72,10 @@
                                 <td> <?=$detail['prix']?> </td>
                                 <td> <?=$detail['qteAppro']?> </td>
                                 <td> <?=$detail['montant']?></td>
+                                <td>
+                                    <a class="btn btn-danger btn-sm mr-2" href="#" role="button">-</a>
+                                    <a class="btn btn-success btn-sm " href="#" role="button">+</a>
+                                </td>
                             </tr>
                             <?php endforeach ?>
                             <?php endif ?>

@@ -14,6 +14,9 @@
 
                     <?php if(Role::hasRole("Admin")):?>
                     <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/?page=article">Article</a>
+                    <a class="nav-link active" aria-current="page"
+                        href="<?=BASE_URL?>/?page=show-appro">Approvisionnement</a>
+
                     <?php endif?>
 
                 </div>

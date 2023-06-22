@@ -11,6 +11,10 @@ function dd($data){
     die;
 }
 
+function dateToString(DateTime $date=new DateTime):string{
+  return $date->format("Y-m-d");
+}
+
 function dateToEn(string $date){
   return \DateTime::createFromFormat("Y-m-d", $date)->format("Y-m-d");
 }

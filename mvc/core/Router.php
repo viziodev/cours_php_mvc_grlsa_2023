@@ -38,8 +38,16 @@ $ctrlAppro=new ApproController;
           $ctrlAppro->save();
     }elseif ($_REQUEST['page']=='add-detail') {
         $ctrlAppro->addDetail();
-  }
-
+  }elseif ($_REQUEST['page']=='show-appro') {
+         $ctrlAppro->index();
+   }
+   elseif ($_REQUEST['page']=='valider-payement') {
+         $ctrlAppro->validerPayement();
+   }
+   elseif ($_REQUEST['page']=='show-detail-appro') {
+    $ctrlAppro->detailAppro();
+}
+//
     //
      
 }else{

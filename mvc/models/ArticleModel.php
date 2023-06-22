@@ -135,8 +135,13 @@ class ArticleModel extends Model{
     }
 
     public function update():int{
-        //A Faire
-        return 0;
+        $sql="UPDATE $this->tableName  SET qteStock =:qteStock WHERE  id=:artcleID";
+        $stmt= $this->pdo->prepare($sql);
+        $stmt->execute([
+                         "qteStock"=>$this->qteStock, 
+                         "artcleID"=>$this->id, 
+                        ]);
+        return $stmt->rowCount();
     }
 
      public function findAll():array{
