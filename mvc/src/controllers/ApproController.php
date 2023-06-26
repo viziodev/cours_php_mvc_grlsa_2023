@@ -1,14 +1,19 @@
 <?php
-require_once "../models/ArticleModel.php";
-require_once "../models/ArticleConfectionModel.php";
-require_once "../models/DetailApproModel.php";
-require_once "../models/ApprovisionnementModel.php";
+namespace App\Controllers;
+use App\Core\Controller;
+use App\Core\Session;
+use App\Models\ArticleConfectionModel;
+use App\Models\ApprovisionnementModel;
+use App\Models\DetailApproModel;
+
 class ApproController extends Controller{
     private ArticleConfectionModel $artConfModel;
     private ApprovisionnementModel $approModel;
+    private DetailApproModel $detailApproModel;
     public function __construct(){
         $this->artConfModel=new ArticleConfectionModel;
         $this->approModel=new ApprovisionnementModel;
+        $this->detailApproModel=new DetailApproModel;
     }
     public  function validerPayement(){
         $approId=$_GET['id-appro'];
@@ -92,8 +97,10 @@ class ApproController extends Controller{
       public  function detailAppro(){
         $approId=$_POST['id-appro'];
         $appro= $this->approModel->findById($approId);
+        $detailsAppro =$this->detailApproModel->findDetailByAppro(  $approId);
         $this->render("appro/detail.html.php",[
-            'appro'=> $appro
+            'appro'=> $appro,
+            'detailsAppro'=> $detailsAppro
         ]) ;
       }
 

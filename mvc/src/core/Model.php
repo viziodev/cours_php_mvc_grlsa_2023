@@ -1,4 +1,5 @@
 <?php 
+namespace App\Core; 
 class Model {
     protected string $tableName;
     /*
@@ -19,7 +20,7 @@ class Model {
        // $this->pdo=new PDO("mysql:host=localhost:3306;dbname=l2_ism_php_2023_glrsa","root","");
        // 1-Connexion  a un SGBD et de Selectionner une BD
        try {
-          $this->pdo=new PDO("mysql:host=localhost:8889;dbname=l2_ism_php_2023_glrsa","root","root"); 
+          $this->pdo=new \PDO("mysql:host=localhost:8889;dbname=l2_ism_php_2023_glrsa","root","root"); 
        } catch (\Exception $ex) {
          die($ex->getMessage());
        }

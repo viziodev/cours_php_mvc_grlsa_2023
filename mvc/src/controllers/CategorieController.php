@@ -1,5 +1,9 @@
 <?php
-require_once "../models/CategorieModel.php";
+namespace App\Controllers;
+use App\Core\Controller;
+use App\Core\Session;
+use App\Core\Validator;
+use App\Models\CategorieModel;
 //Service 
 class CategorieController extends Controller{
     private CategorieModel $catModel;

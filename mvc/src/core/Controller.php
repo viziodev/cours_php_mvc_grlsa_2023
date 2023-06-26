@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace App\Core; 
 class Controller{
     protected string  $layout="base";
     

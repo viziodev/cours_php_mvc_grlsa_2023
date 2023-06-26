@@ -1,5 +1,5 @@
 <?php 
-
+/*
 function dump($data){
     echo "<pre>";
       var_dump($data);
@@ -9,7 +9,7 @@ function dump($data){
 function dd($data){
     dump($data); 
     die;
-}
+}*/
 
 function dateToString(DateTime $date=new DateTime):string{
   return $date->format("Y-m-d");

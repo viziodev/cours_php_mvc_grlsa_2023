@@ -1,4 +1,6 @@
 <?php 
+namespace App\Models; 
+use App\Core\Model;
 class DetailApproModel extends Model{
     public int $id;
     public int $qteAppro;
@@ -21,4 +23,13 @@ class DetailApproModel extends Model{
                         ]);
         return $stmt->rowCount();
     }
+    public function findDetailByAppro(int $approId)
+    {
+        return $this->query("select * from $this->tableName d,Article a 
+          where
+          d.articleID=a.id and
+          approId=:approId",
+         ['approId'=>$approId]);
+    }
+    
 }

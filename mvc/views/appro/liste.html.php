@@ -1,4 +1,5 @@
 <?php
+use App\Core\Role;
  if(!Role::hasRole("Admin") ) redirect("categorie");
 ?>
 <div class="container mt-3">
@@ -61,7 +62,6 @@
                                     <input type="hidden" name="id-appro" value="<?=$appro->id?>">
                                     <button name="" id="" class=" btn btn-sm btn-info text-white mr-1 "
                                         type="submit">Voir Details</button>
-
                                 </form>
                             </td>
                         </tr>

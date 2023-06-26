@@ -1,4 +1,6 @@
-<?php 
+<?php
+namespace App\Models;
+use App\Core\Model; 
 class ApprovisionnementModel extends Model{
    public int $id; 
    public string $date; 
@@ -62,6 +64,8 @@ class ApprovisionnementModel extends Model{
                         ]);
         return $stmt->rowCount();
 }
+
+
 
 }
 

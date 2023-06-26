@@ -1,4 +1,5 @@
 <?php
+use App\Core\Session;
  if(Session::isset("errors")) {
       $errors=Session::get("errors");
       //Recuperer les donnees du Formulaire

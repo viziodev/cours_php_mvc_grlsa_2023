@@ -1,4 +1,5 @@
 <?php
+use App\Core\Role;
  if(!Role::isConnect()) redirect("show-login-form");
 ?>
 <!doctype html>

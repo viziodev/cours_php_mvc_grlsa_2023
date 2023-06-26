@@ -1,4 +1,5 @@
 <?php
+use App\Core\Role;
  if(!Role::hasRole("Admin") ) redirect("categorie");
 ?>
 <div class="container mt-3">
@@ -17,7 +18,6 @@
                 <table class="table ">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
                             <th scope="col">Libelle</th>
                             <th scope="col">Categorie</th>
                             <th scope="col">Type</th>
@@ -31,7 +31,6 @@
                         <?php foreach($articles as $cat): ?>
 
                         <tr class="">
-                            <td scope=" row"> <?=$cat->getId()?> </td>
                             <td><?=$cat->getLibelle()?></td>
                             <td><?=$cat->getCategorie()->getLibelle()?></td>
                             <td><?=$cat->getType()?></td>

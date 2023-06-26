@@ -1,9 +1,11 @@
 <?php 
 
-require_once "./../controllers/CategorieController.php";
-require_once "./../controllers/ArticleController.php";
-require_once "./../controllers/AuthController.php";
-require_once "./../controllers/ApproController.php";
+use App\Controllers\AuthController;
+use App\Controllers\ApproController;
+use App\Controllers\ArticleController;
+use App\Controllers\CategorieController;
+
+
 //Router ==> Choisir le controller et d'executer une Methode du controlleur
 $ctrlCat=new CategorieController;
 $ctrlArt=new ArticleController;

@@ -1,4 +1,5 @@
 <?php 
+namespace App\Models; 
 class ArticleVenteModel extends ArticleModel{
     private string $dateProduction;
 

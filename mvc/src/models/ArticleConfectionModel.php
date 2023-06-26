@@ -1,4 +1,5 @@
 <?php 
+namespace App\Models; 
 class ArticleConfectionModel  extends ArticleModel{
     private string $fournisseur;
     

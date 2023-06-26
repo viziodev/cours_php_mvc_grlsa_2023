@@ -1,8 +1,12 @@
 <?php
-require_once "../models/ArticleModel.php";
-require_once "../models/ArticleConfectionModel.php";
-require_once "../models/ArticleVenteModel.php";
-require_once "../models/CategorieModel.php";
+namespace App\Controllers;
+use App\Core\Controller;
+use App\Core\Session;
+use App\Core\Validator;
+use App\Models\ArticleConfectionModel;
+use App\Models\CategorieModel;
+use App\Models\ArticleModel;
+use App\Models\ArticleVenteModel;
 //Service 
 class ArticleController extends Controller{
   

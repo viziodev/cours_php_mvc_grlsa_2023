@@ -1,4 +1,7 @@
-<div class="container-fluid">
+<?php
+use App\Core\Role;
+use App\Core\Session;
+?><div class="container-fluid">
     <nav class="navbar navbar-expand-sm navbar-light bg-info mt-2">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Gestion Atelier Couture</a>

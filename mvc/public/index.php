@@ -1,7 +1,8 @@
 <?php 
+require_once "./../vendor/autoload.php";
 //Front Controller
-require_once "./../core/bootsrap.php";
-require_once "./../core/Router.php";
+require_once "./../src/core/bootsrap.php";
+require_once "./../src/core/Router.php";
 
 
 
