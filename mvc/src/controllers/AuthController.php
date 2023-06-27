@@ -52,7 +52,6 @@ class AuthController extends Controller{
            }
        }
          $errors = $validation->errors();
-         dd($errors);
          Session::set("errors",  $errors); 
          Session::set("data",$_POST); 
          $this->redirect("show-login-form");

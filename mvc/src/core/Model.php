@@ -26,13 +26,23 @@ class Model {
        }
        
     }
+    public function findByPaginate(int $offset,int $nbreParPage):array{
+        $sql="select * from $this->tableName limit $offset,$nbreParPage";  //Requete Non preparee
+        return $this->query($sql);
+    }
+    public function coutQuery():int{
+        $sql="select count(*) as nbre from $this->tableName";  //Requete Non preparee
+        return $this->query($sql,[],true)->nbre;
+    }
 
+    
     public function findAll():array{
         $sql="select * from $this->tableName";  //Requete Non preparee
         $stmt= $this->pdo->query($sql);
         return $stmt->fetchAll(\PDO::FETCH_CLASS,get_called_class()); 
     }
-
+   
+ 
     public function query(string $sql,$data=[],$single=false){
         $stmt= $this->pdo->prepare($sql);
         $stmt->setFetchMode(\PDO::FETCH_CLASS,get_called_class());

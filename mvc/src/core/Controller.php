@@ -1,17 +1,21 @@
 <?php
 namespace App\Core; 
+
+use Nette\Utils\Paginator;
+
 class Controller{
     protected string  $layout="base";
-    
+    protected Paginator $paginator;
     public function __construct()
     {
         Session::startSession();
+       
     }
 
     
   
     public function render($view, array $data=[]){
-       extract($data);
+        extract($data);
         ob_start();
         require_once "./../views/".$view;
        $contentForView=ob_get_clean();

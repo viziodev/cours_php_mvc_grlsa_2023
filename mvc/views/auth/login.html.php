@@ -1,7 +1,7 @@
 <?php
 use App\Core\Session;
  if(Session::isset("errors")) {
-      $errors=Session::get("errors");
+      $errors=Session::get("errors")->firstOfAll();
       //Recuperer les donnees du Formulaire
       $data=Session::get("data");
       Session::unset("errors");  

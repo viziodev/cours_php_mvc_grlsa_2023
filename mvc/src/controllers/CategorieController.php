@@ -1,8 +1,9 @@
 <?php
 namespace App\Controllers;
-use App\Core\Controller;
 use App\Core\Session;
 use App\Core\Validator;
+use App\Core\Controller;
+use Nette\Utils\Paginator;
 use App\Models\CategorieModel;
 //Service 
 class CategorieController extends Controller{
@@ -14,9 +15,25 @@ class CategorieController extends Controller{
       
     }
     public  function lister(){
-          $categories=  $this->catModel->findAll();
+
+        //16 Categories   => SELECT count(*) as nbre FROM Categorie
+        //5 categories par page  ==> SELECT * FROM Categorie Limit 15,5
+        //nbre Page = 16 div 5 + 16 % 5!=0?1:0 = 3 + 1 =4 pages
+          //p1,p2,p3  = 5 categories
+          //p4   ==> 1 categories
+         // dd();
+         $pagination=1;
+         if(isset($_GET['pagination'])){
+            $pagination=$_GET['pagination'];
+         }
+          $paginator = new Paginator;
+          $paginator->setPage($pagination); 
+          $paginator->setItemsPerPage(5);
+          $paginator->setItemCount($this->catModel->coutQuery());
+          $categories=$this->catModel->findByPaginate($paginator->getOffset(),$paginator->getLength());
           $this->render("categorie/liste.html.php",[
-            "categories"=>$categories
+            "categories"=>$categories,
+            "paginator"=> $paginator,            
         ]);
       
     }
