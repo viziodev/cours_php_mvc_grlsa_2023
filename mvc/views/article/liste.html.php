@@ -44,6 +44,7 @@ use App\Core\Role;
                         <?php endforeach ?>
                     </tbody>
                 </table>
+                <?php require_once "./../views/inc/paginate.html.php"; ?>
             </div>
         </div>
     </div>

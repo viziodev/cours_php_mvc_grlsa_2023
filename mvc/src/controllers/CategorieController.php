@@ -22,18 +22,15 @@ class CategorieController extends Controller{
           //p1,p2,p3  = 5 categories
           //p4   ==> 1 categories
          // dd();
-         $pagination=1;
+        
          if(isset($_GET['pagination'])){
-            $pagination=$_GET['pagination'];
+            $this->currentPage=$_GET['pagination'];
          }
-          $paginator = new Paginator;
-          $paginator->setPage($pagination); 
-          $paginator->setItemsPerPage(5);
-          $paginator->setItemCount($this->catModel->coutQuery());
-          $categories=$this->catModel->findByPaginate($paginator->getOffset(),$paginator->getLength());
+         $this->paginator->setPage($this->currentPage); 
+         $this->paginator ->setItemCount($this->catModel->coutQuery());
+         $categories=$this->catModel->findByPaginate($this->paginator ->getOffset(),$this->paginator ->getLength());
           $this->render("categorie/liste.html.php",[
-            "categories"=>$categories,
-            "paginator"=> $paginator,            
+            "categories"=>$categories,          
         ]);
       
     }

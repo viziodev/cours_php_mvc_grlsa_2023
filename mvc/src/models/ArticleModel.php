@@ -155,6 +155,16 @@ class ArticleModel extends Model{
         
     }
 
+    public function findByPaginate(int $offset,int $nbreParPage):array{
+        $sql="select * from $this->tableName where  type  like :type limit $offset,$nbreParPage";  //Requete Non preparee
+        return $this->query($sql,["type"=>$this->type]);
+    }
+
+    public function coutQuery():int{
+        $sql="select count(*) as nbre  from $this->tableName where  type  like :type ";  //Requete Non preparee
+        return $this->query($sql,["type"=>$this->type],true)->nbre;
+    }
+
     public function getTypesArticle():array{
         return $this->query("SELECT Distinct `type`,ordre FROM `Article` ORDER by ordre desc"); 
     }

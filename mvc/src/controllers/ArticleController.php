@@ -16,15 +16,20 @@ class ArticleController extends Controller{
     {
         parent::__construct();
         $this->catModel =new CategorieModel;  
-        $this->articleModel =new ArticleModel;  
+        $this->articleModel =new ArticleModel; 
+        
     }
     public  function lister(){
         $articleCModel=new ArticleConfectionModel;
-        $articleVModel=new ArticleVenteModel;
-        $articles=array_merge($articleCModel->findAll(),$articleVModel->findAll());
-        $this->render("article/liste.html.php",[
+        if(isset($_GET['pagination'])){
+            $this->currentPage=$_GET['pagination'];
+         }
+         $this->paginator->setPage($this->currentPage); 
+         $this->paginator ->setItemCount($articleCModel->coutQuery());
+         $articles=$articleCModel->findByPaginate($this->paginator ->getOffset(),$this->paginator ->getLength());
+         $this->render("article/liste.html.php",[
             "articles"=>$articles
-        ]);
+         ]);
     }
 
     public  function showForm(){
