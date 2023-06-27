@@ -1,8 +1,6 @@
 <?php
 namespace App\Core; 
-
 use Nette\Utils\Paginator;
-
 class Controller{
     protected string  $layout="base";
     protected Paginator $paginator;
@@ -11,18 +9,12 @@ class Controller{
     protected string $path;
     public function __construct()
     {
-         
           Session::startSession();
           $this->paginator = new Paginator;
           $this->paginator->setItemsPerPage($this->nbrePerPage);
-          $this->path=explode("=",explode("&",$_SERVER['REQUEST_URI'])[0])[1];
-       
+          $this->path=explode("?",$_SERVER['REQUEST_URI'])[0];
     }
 
-   
-
-    
-  
     public function render($view, array $data=[]){
         $data['paginator']= $this->paginator;
         $data['path']= $this->path;
@@ -32,9 +24,8 @@ class Controller{
        $contentForView=ob_get_clean();
        require_once "./../views/".$this->layout.".layout.html.php"; 
     }
-
     public function redirect(string $path){
-        header("location:".BASE_URL."/?page=$path");//GET
+        header("location:".BASE_URL."$path");//GET
         exit;
     }
 }

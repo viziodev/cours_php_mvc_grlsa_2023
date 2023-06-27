@@ -11,7 +11,6 @@ class AuthController extends Controller{
     public function __construct()
     {
         parent::__construct();
-      
         $this->userModel =new UserModel;
     }
 
@@ -48,13 +47,13 @@ class AuthController extends Controller{
                //Authentification stateFull 
                //Connexion ==> Authentification + Autorisation 
                  Session::set("userconnect",toArray($user) );
-                 $this->redirect("categorie");
+                 $this->redirect("/categorie");
            }
        }
          $errors = $validation->errors();
          Session::set("errors",  $errors); 
          Session::set("data",$_POST); 
-         $this->redirect("show-login-form");
+         $this->redirect("/login/form");
     }
 
     
@@ -62,6 +61,6 @@ class AuthController extends Controller{
     public function logout() {
         Session::unset("userconnect");
         Session::destroySession();
-        $this->redirect("show-login-form");
+        $this->redirect("/login/form");
     }
 }

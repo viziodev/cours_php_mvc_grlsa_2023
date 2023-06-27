@@ -12,6 +12,7 @@ class CategorieController extends Controller{
     {
         parent::__construct();
         $this->catModel =new CategorieModel; 
+        
       
     }
     public  function lister(){
@@ -23,8 +24,8 @@ class CategorieController extends Controller{
           //p4   ==> 1 categories
          // dd();
         
-         if(isset($_GET['pagination'])){
-            $this->currentPage=$_GET['pagination'];
+         if(isset($_GET['page'])){
+            $this->currentPage=$_GET['page'];
          }
          $this->paginator->setPage($this->currentPage); 
          $this->paginator ->setItemCount($this->catModel->coutQuery());
@@ -69,7 +70,7 @@ class CategorieController extends Controller{
        Session::set("errors",Validator::getErrors());
         //Redirection
       // header("location:".BASE_URL."/?page=categorie");//GET
-      $this->redirect("categorie");
+      $this->redirect("/categorie");
 
 }
 

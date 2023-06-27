@@ -1,6 +1,6 @@
 <?php
 use App\Core\Role;
- if(!Role::hasRole("Admin") ) redirect("categorie");
+ if(!Role::hasRole("Admin") ) redirect("/categorie");
 ?>
 <div class="container mt-3">
     <div class="card">
@@ -8,7 +8,7 @@ use App\Core\Role;
         <div class="card-body">
             <div class="row float-end ">
                 <div class="col-4  ">
-                    <a name="" id="" class="btn btn-info  text-white  " href="<?=BASE_URL?>?page=show-form-article"
+                    <a name="" id="" class="btn btn-info  text-white  " href="<?=BASE_URL?>/article/form"
                         role="button">Nouveau</a>
                 </div>
 

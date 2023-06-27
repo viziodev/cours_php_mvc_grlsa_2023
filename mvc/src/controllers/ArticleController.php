@@ -17,12 +17,12 @@ class ArticleController extends Controller{
         parent::__construct();
         $this->catModel =new CategorieModel;  
         $this->articleModel =new ArticleModel; 
-        
+       
     }
     public  function lister(){
         $articleCModel=new ArticleConfectionModel;
-        if(isset($_GET['pagination'])){
-            $this->currentPage=$_GET['pagination'];
+        if(isset($_GET['page'])){
+            $this->currentPage=$_GET['page'];
          }
          $this->paginator->setPage($this->currentPage); 
          $this->paginator ->setItemCount($articleCModel->coutQuery());
@@ -63,12 +63,12 @@ class ArticleController extends Controller{
            }
              $this->articleModel->insert($data);
        
-              $this->redirect("article");
+              $this->redirect("/article");
         }else{
             // dump(Validator::getErrors());
               Session::set("errors",Validator::getErrors()); 
               Session::set("data",$_POST); 
-             $this->redirect("show-form-article");
+             $this->redirect("/article/form");
         }
          
     }

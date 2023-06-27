@@ -12,7 +12,7 @@ use App\Core\Session;
     <div class="card-body">
         <h5 class="card-title">Formulaire de Connexion</h5>
         <p class="card-text text-danger text-center"><?=$errors['error_connexion']??""?> </p>
-        <form action="<?=BASE_URL?>" method="POST">
+        <form action="<?=BASE_URL?>/login" method="POST">
             <div class=" mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -27,7 +27,7 @@ use App\Core\Session;
             <div id="emailHelp" class="form-text text-danger mb-2"><?=$errors['password']??""?></div>
 
             <button type="submit" class="btn btn-primary">Connexion</button>
-            <input type="hidden" name="page" value="login">
+
         </form>
     </div>
 </div>

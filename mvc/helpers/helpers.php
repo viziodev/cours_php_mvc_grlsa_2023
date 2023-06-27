@@ -45,6 +45,6 @@ function toArray(object $data){
 
 
 function redirect(string $path){
-  header("location:".BASE_URL."/?page=$path");//GET
+  header("location:".BASE_URL.$path);//GET
   exit;
 }

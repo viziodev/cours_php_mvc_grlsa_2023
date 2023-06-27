@@ -8,13 +8,13 @@ use App\Core\Role;
         <div class="card-body">
             <div class="row float-end ">
                 <div class="col-4  ">
-                    <a name="" id="" class="btn btn-info  text-white  " href="<?=BASE_URL?>?page=save-appro"
+                    <a name="" id="" class="btn btn-info  text-white  " href="<?=BASE_URL?>/appro/create"
                         role="button">Nouveau</a>
                 </div>
 
             </div>
             <h4 class="card-title">Liste des Approvisionnments </h4>
-            <form class="d-flex" method="post" action="<?=BASE_URL?>">
+            <form class="d-flex" method="post" action="<?=BASE_URL?>/appro">
                 <div class="col">
                     <div class="mb-3">
                         <label for="" class="form-label">Etat Paiement</label>
@@ -31,7 +31,7 @@ use App\Core\Role;
                         <input name="" id="" class="btn btn-sm btn-primary" type="submit" value="Ok">
                     </div>
                 </div>
-                <input type="hidden" name="page" value="show-appro">
+
             </form>
             <div class="table table-bordered table-light mt-3">
                 <table class="table ">
@@ -53,12 +53,10 @@ use App\Core\Role;
                             <td class="d-flex">
                                 <?php if(!$appro->payer):?>
                                 <a name="" id="" class="btn btn-sm btn-danger  text-white  "
-                                    href="<?=BASE_URL?>/?page=valider-payement&id-appro=<?=$appro->id?>"
-                                    role="button">Valider
+                                    href="<?=BASE_URL?>/appro/payement?id-appro=<?=$appro->id?>" role="button">Valider
                                     Paiement</a>
                                 <?php endif?>
-                                <form method="post" action="<?=BASE_URL?> " style="margin-left:5px;">
-                                    <input type="hidden" name="page" value="show-detail-appro">
+                                <form method="post" action="<?=BASE_URL?>/appro/detail " style="margin-left:5px;">
                                     <input type="hidden" name="id-appro" value="<?=$appro->id?>">
                                     <button name="" id="" class=" btn btn-sm btn-info text-white mr-1 "
                                         type="submit">Voir Details</button>

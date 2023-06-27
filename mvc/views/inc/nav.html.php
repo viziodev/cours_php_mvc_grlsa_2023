@@ -12,13 +12,12 @@ use App\Core\Session;
             <div class="collapse navbar-collapse" id="navbarID">
                 <div class="navbar-nav">
 
-                    <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/?page=categorie">
+                    <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/categorie">
                         Categorie</a>
 
                     <?php if(Role::hasRole("Admin")):?>
-                    <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/?page=article">Article</a>
-                    <a class="nav-link active" aria-current="page"
-                        href="<?=BASE_URL?>/?page=show-appro">Approvisionnement</a>
+                    <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/article">Article</a>
+                    <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/appro">Approvisionnement</a>
 
                     <?php endif?>
 
@@ -27,7 +26,7 @@ use App\Core\Session;
             <div class="navbar navbar-expand-sm navbar-light bg-info mt-2 float-end">
                 <div class="text-white " style="margin-right: 20px;">
                     <?=Session::get("userconnect")['nomComplet']." ".Session::get("userconnect")['role']?> </div>
-                <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/?page=logout">Deconnexion</a>
+                <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>/logout">Deconnexion</a>
             </div>
     </nav>
 

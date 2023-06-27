@@ -11,6 +11,7 @@ class ApproController extends Controller{
     private ApprovisionnementModel $approModel;
     private DetailApproModel $detailApproModel;
     public function __construct(){
+        parent::__construct();
         $this->artConfModel=new ArticleConfectionModel;
         $this->approModel=new ApprovisionnementModel;
         $this->detailApproModel=new DetailApproModel;
@@ -18,14 +19,14 @@ class ApproController extends Controller{
     public  function validerPayement(){
         $approId=$_GET['id-appro'];
         $this->approModel->savePayement($approId);
-        $this->redirect("show-appro");
+        $this->redirect("/appro");
     }
     //Ajouter un Approvisionnement
       //1-Charger le Formulaire  => GET
       //2-Ajouter apres la soumission du Formulaire  ==> POST
       public  function save(){
          $articles= $this->artConfModel->findAll();
-         if(isset($_POST['page'])){
+         if(isset($_POST['save-appro'])){
             //Ajouter l'appro
             if(Session::isset("detailsAppro")){
                 $detailsAppro=Session::get("detailsAppro");
@@ -50,7 +51,7 @@ class ApproController extends Controller{
       //Lister + Filtrer Approvisionnement
       public  function index(){
         $etatPayement=0;
-        if(isset($_POST['page'])){
+        if(isset($_POST['etatPayement'])){
             $etatPayement=$_POST['etatPayement'];
         }
         $appros=$this->approModel->findApproByPaiement($etatPayement);
@@ -89,7 +90,7 @@ class ApproController extends Controller{
              $total+=$montant;
            Session::set("detailsAppro",$detailsAppro);
            Session::set("total",$total);
-           $this->redirect("save-appro");
+           $this->redirect("/appro/create");
           // dd( $unDetail);
       }
 

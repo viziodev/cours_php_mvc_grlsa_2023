@@ -1,10 +1,67 @@
 <?php 
+namespace App\Core;
 
-use App\Controllers\AuthController;
+class Router{
+    //Enregister les routes de l'application
+    private static array $routes=[];
+    public static  function route(string $uri,array $route){
+        self::$routes[$uri]=$route;
+    }
+
+    public static  function resolve(){
+        
+        $uri=explode("?",$_SERVER['REQUEST_URI'])[0];
+        
+        if(isset(self::$routes[$uri])){
+            //Route existe
+            //$ctrl=self::$routes[$uri][0];
+            //$action=self::$routes[$uri][1];
+            [$ctrlClasseName,$action]=self::$routes[$uri];
+            if(class_exists($ctrlClasseName) && method_exists($ctrlClasseName,$action)){
+                  $ctrl=new $ctrlClasseName();
+                  call_user_func([$ctrl,$action]);
+            }else{
+                 //Route Pas existe ==> Page Note Found
+                 dd("error");
+            }
+            
+        }else{
+             //Route Pas existe ==> Page Note Found
+        }
+       
+    }
+}
+/*
+//ArticleController
+   /article
+   /article/form
+   /article/create
+   //Enregister les routes de l'application
+     $router::route("/article",[ArticleController::class,'lister'])
+     $router::route("/article/form",[ArticleController::class,'lister'])
+   
+     $router::resolve() //Rechercher une route taper sur l'url ou a partir d'un form
+   
+     
+//CategorieController
+   /categorie
+   /categorie/create
+//AuthController
+   /login
+   /logout
+//ApproController
+/appro/save
+  /appro/detail/show
+  /appro/detail/add
+  /appro/payement
+
+*/
+
+
+/*use App\Controllers\AuthController;
 use App\Controllers\ApproController;
 use App\Controllers\ArticleController;
 use App\Controllers\CategorieController;
-
 
 //Router ==> Choisir le controller et d'executer une Methode du controlleur
 $ctrlCat=new CategorieController;
@@ -55,3 +112,4 @@ $ctrlAppro=new ApproController;
 }else{
     $ctrlAuth->showFormLogin(); 
 }
+*/

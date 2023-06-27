@@ -4,7 +4,7 @@
                               if(!$paginator->isFirst()): 
                             ?>
         <li class="page-item"><a class="page-link"
-                href="<?=BASE_URL.'/?page='.$path.'&pagination='.$paginator->getPage()-1?>">Precedent</a>
+                href="<?=BASE_URL.$path.'?page='.$paginator->getPage()-1?>">Precedent</a>
         </li>
         <?php
                                endif
@@ -13,7 +13,7 @@
                                 for ($i=1; $i <=$paginator->getPageCount() ; $i++): 
                              ?>
         <li class="page-item  <?=$paginator->getPage()==$i?'active':'' ?>"><a class="page-link"
-                href="<?=BASE_URL.'/?page='.$path.'&pagination='.$i?>">
+                href="<?=BASE_URL.$path.'?page='.$i?>">
                 <?=$i?></a>
         </li>
         <?php endfor ?>
@@ -21,7 +21,7 @@
                               if(!$paginator->isLast()): 
                             ?>
         <li class=" page-item"><a class="page-link"
-                href="<?=BASE_URL.'/?page='.$path.'&pagination='.$paginator->getPage()+1?>">Suivant</a>
+                href="<?=BASE_URL.$path.'?page='.$paginator->getPage()+1?>">Suivant</a>
         </li>
         <?php
                                endif

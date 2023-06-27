@@ -17,7 +17,7 @@ use App\Core\Session;
             <?=$sms??""?>
         </div>
         <?php endif?>
-        <form class=" my-3" style="margin-left: 10px;" method="post" action="<?=BASE_URL?>">
+        <form class=" my-3" style="margin-left: 10px;" method="post" action="<?=BASE_URL?>/appro/add/detail">
             <div class="row w-100 d-flex">
                 <div class="col-6">
                     <div class="mb-2">
@@ -40,8 +40,6 @@ use App\Core\Session;
                     <button type="submit" class="form-control btn btn-primary">Ajouter</button>
                 </div>
             </div>
-            <input type="hidden" name="page" value="add-detail">
-
         </form>
         <div class="text-danger" style="margin-left: 10px;">
             <?= $errors['libelle']??"" ?>
@@ -83,7 +81,8 @@ use App\Core\Session;
                         </tbody>
                     </table>
                 </div>
-                <form class="my-3 d-flex flex-column " style="margin-left: 10px;" method="post" action="<?=BASE_URL?>">
+                <form class="my-3 d-flex flex-column " style="margin-left: 10px;" method="post"
+                    action="<?=BASE_URL?>/appro/create">
                     <div class="col-8 row ml-2  mb-2 ">
                         <div class="fw-bold fs-4">Total : <span class="text-danger ">
                                 <?=$total?> CFA
@@ -92,8 +91,9 @@ use App\Core\Session;
 
                     </div>
                     <div class="col-3  offset-md-9 float-end">
-                        <button type="submit" class="form-control btn btn-primary ">Enregister</button>
-                        <input type="hidden" name="page" value="save-appro">
+                        <button type="submit" name="save-appro"
+                            class="form-control btn btn-primary ">Enregister</button>
+
                     </div>
                 </form>
             </div>

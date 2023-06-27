@@ -9,7 +9,7 @@ use App\Core\Session;
 <div class=" card w-75 mt-3 ">
 
     <div class=" card-body mt-2">
-        <form class="d-flex my-3" style="margin-left: 10px;" method="post" action="<?=BASE_URL?>">
+        <form class="d-flex my-3" style="margin-left: 10px;" method="post" action="<?=BASE_URL?>/categorie/create">
             <div class="row w-100">
                 <div class="col-6">
                     <input type="text" class="form-control" placeholder="Libelle" name="libelle" aria-label="Libelle">
@@ -19,7 +19,7 @@ use App\Core\Session;
                 </div>
             </div>
 
-            <input type="hidden" name="page" value="add-categorie">
+
 
         </form>
         <div class="text-danger" style="margin-left: 10px;">

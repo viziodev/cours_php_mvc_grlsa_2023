@@ -1,6 +1,6 @@
 <?php
 use App\Core\Role;
- if(!Role::isConnect()) redirect("show-login-form");
+ if(!Role::isConnect()) redirect("/login/form");
 ?>
 <!doctype html>
 <html lang="en">

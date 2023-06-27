@@ -10,7 +10,7 @@ Session::unset("data");
 ?><div class="card mt-5" style="width:40rem; ">
     <div class="card-body">
         <h5 class="card-title">Enregistrement un Article</h5>
-        <form class="row g-3 needs-validation mt-1" method="Post" action="<?=BASE_URL?>">
+        <form class="row g-3 needs-validation mt-1" method="Post" action="<?=BASE_URL?>/article/create">
             <div class="col-md-10">
                 <label for="validationCustom01" class="form-label">Libelle</label>
                 <input type="text" class="form-control <?= isset($errors['libelle'])? "is-invalid" :"is-valid" ?>"
@@ -80,7 +80,7 @@ Session::unset("data");
             <div class="col-12">
                 <button class="btn btn-primary float-end" type="submit">Enregistrer</button>
             </div>
-            <input type="hidden" name="page" value="save-article">
+
         </form>
 
     </div>
